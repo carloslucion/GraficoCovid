@@ -1,0 +1,68 @@
+# Casos de covid 19
+# fonte de dados: https://covid.saude.gov.br/
+# Configurando o diretório de trabalho
+# # Não use diretórios com espaço no nome
+
+setwd("C:/fcd/r/")
+getwd()
+
+#Arquivo de dados formato.csv
+data1<- read.csv("HIST_PAINEL_COVIDBR_20200513.csv",sep = ';')
+View(data1)
+#library(dplyr)
+
+#blumenau<- filter(data1, municipio %in% c("Blumenau", "Joinville", "Santa Maria"))
+#View(blumenau)
+
+library(stringr)
+library(lubridate)
+#install.packages("plotly")
+library(plotly)
+
+#data set com as cidades interessadas
+novo<- data1 %>%
+  select(municipio, estado, data, casosAcumulado) %>%
+  mutate(novadata= str_c(mday(data), "-", month(data),'-', year(data)), cont=1:nrow(data1) ) %>%
+  filter(municipio %in% c("Blumenau", "Joinville", "Itajaí", "Santa Maria"),
+         estado %in% c("RS", "SC") ) %>%
+  arrange(estado, municipio, data)
+
+#View(novo)
+
+novo$NovaData<-format(ymd(novo$data), format='%d-%m-%Y')
+str(novo)
+
+ggplot(data = novo, aes(x=data ,y=casosAcumulado, color=municipio, shape=municipio, group=municipio))  + 
+  geom_line()+
+  geom_point(size=1) +
+  labs(x="Data", y="Casos") +
+  ggtitle("Casos de Covid-19 - Lucion") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1), legend.position = "top")
+
+
+fig <- ggplotly(p) %>%
+  layout(
+    title = "AAPL: Last 30 days",
+    yaxis = list(
+      title = "Close",
+      zeroline = F,
+      tickprefix = "$"
+    ),
+    xaxis = list(
+      title = "Day",
+      zeroline = F, 
+      showgrid = F
+    )
+  ) %>% 
+  animation_opts(
+    frame = 100, 
+    transition = 0, 
+    redraw = FALSE
+  ) %>%
+  animation_slider(
+    currentvalue = list(
+      prefix = "Day "
+    )
+  )
+
+fig 
