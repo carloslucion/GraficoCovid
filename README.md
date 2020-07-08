@@ -1,7 +1,9 @@
 # GraficoCovid-19
- Gráficos COVID-19 da evolução do COVID-19 utilizando a Linguagem R.
+ Gráficos da evolução do COVID-19 utilizando a Linguagem R.
  
  Dados obtidos no site: https://covid.saude.gov.br/
+ 
+ Dados datados de 06/07/2020.
  
  Cidades estudadas: Joinvile, Blumenau e Itajaí.
 
