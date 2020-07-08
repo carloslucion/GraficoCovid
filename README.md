@@ -1,7 +1,7 @@
 # GraficoCovid-19
  Gráficos da evolução de casos, óbitos e novos casos do COVID-19 utilizando a Linguagem R.
  
- A linha do tem está na escala semanal.
+ A linha do tempo está na escala semanal.
  
  Dados obtidos no site: https://covid.saude.gov.br/
  
