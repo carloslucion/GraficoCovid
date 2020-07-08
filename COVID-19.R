@@ -1,12 +1,12 @@
 # Casos de covid 19
 # fonte de dados: https://covid.saude.gov.br/
-# Configurando o diretório de trabalho
 
-setwd("D:/ArquivosPessoais/OneDrive/Drive/FCD/R/GraficoCovid")
+# Configurando o diretório de trabalho
+setwd("SUA PASTA DE TRABALHO d:\..\..")
 getwd()
 
 #Lendo arquivo de dados formato.csv 
-dados<- read.csv("HIST_PAINEL_COVIDBR_06jul2020.CSV",sep = ';')
+dados<- read.csv("HIST_PAINEL_COVIDBR_07jul2020.CSV",sep = ';')
 
 #vendo os tipos de dados
 str(dados)
